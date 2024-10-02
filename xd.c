@@ -9,44 +9,41 @@ float minA[3];
 float minE[5];        
 float promA[3];       
 float promE[5]; 
-    
+
 int main () {
     //estudiante
     for (int i = 0; i < 5; i++){
-        printf("ingrese el nombre del estudiante:\n", i);
-        //scanf("%s", &nombres[i]);
+        printf("ingrese el nombre del estudiante:\n");
         fgets(nombre[i],20,stdin);
     }
 
     //asignatura
     for (int j = 0; j < 3; j++){
-        printf("ingrese el nombre de la materia:\n", j);
-        //scanf("%s", &nombres[i]);
+        printf("ingrese el nombre de la materia:\n");
         fgets(asig[j],20,stdin);
     }
 
     //notas
     for (int i = 0; i < 5; i++) {
-        printf("Estudiante %s",nombre[i]);
+        printf("Estudiante %s", nombre[i]);
         for (int j = 0; j < 3; j++) {
-            int result;
+            int result; //////////
             do {
-                printf(" Calificacion en %s",asig[j]);
-                result = scanf("%f", &nota[i][j]);
-                while(getchar() != '\n');
+                printf(" Calificacion en %s: ", asig[j]);
+                result = scanf("%f", &nota[i][j]);/////////
+                while(getchar() != '\n'); // Limpiar el buffer ///////////
 
-                if (nota[i][j] < 0 || nota[i][j] > 10) {
+                if (result != 1) { // Si no se ingresó un número
+                    printf("Entrada invalida. Por favor ingrese un numero.\n");
+                } else if (nota[i][j] < 0 || nota[i][j] > 10) {
                     printf("Por favor ingrese un valor entre 0 y 10.\n");
-                }else if (result != 1) {
-                    printf("Por favor ingrese un valor numerico.\n");
                 }
-
-            }while (result != 1 || nota[i][j] < 0 || nota[i][j] > 10);
+            } while (result != 1 || nota[i][j] < 0 || nota[i][j] > 10);
         }
     }
 
     //ESTUDIANTE 
-////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Calcular promedio, max y min por estudiante
     for (int i = 0; i < 5; i++) {
         float suma = 0;
@@ -62,8 +59,7 @@ int main () {
     }
 
     //ASIGNATURA
-///////////////////////////////////////////////////////////////////////////////////////////////////////
-
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////
     for (int j = 0; j < 3; j++) {
         float suma = 0;
         int aprobado = 0;
@@ -88,13 +84,13 @@ int main () {
         printf("  Promedio: %.2f\n", promA[j]);  
         printf("  Calificacion mas alta: %.2f\n", maxA[j]);
         printf("  Calificacion mas baja: %.2f\n", minA[j]);
-        printf("  Aprobados: %d", aprobado);
-        printf("  Reprobados: %d", reprobado);
+        printf("  Aprobados: %d\n", aprobado);
+        printf("  Reprobados: %d\n", reprobado);
     }
 
     // Resultados
     for (int i = 0; i < 5; i++) {
-        printf("\nEstudiante %s", nombre[i] );
+        printf("\nEstudiante %s", nombre[i]);
         printf("  Promedio: %.2f\n", promE[i]);               // promedio estudiante cada 
         printf("  Calificacion mas alta: %.2f\n", maxE[i]);
         printf("  Calificacion mas baja: %.2f\n", minE[i]);
@@ -102,4 +98,3 @@ int main () {
 
     return 0;
 }
-
